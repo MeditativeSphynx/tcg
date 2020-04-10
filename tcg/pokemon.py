@@ -112,14 +112,42 @@ class PokemonTab(tk.Frame):
 
         master.add(self, text='Pokemon')
 
-        # TODO: ADD THE REST OF THE VARIABLES THAT THE ``POKEMON``
-        #   CLASS CONTAINS.
+        ##### POKEMON STATS #####
         self.pokemon_id = tk.StringVar(self)
         self.pokemon_id.set('')
 
         self.pokemon_name = tk.StringVar(self)
         self.pokemon_name.set('')
 
+        self.pokemon_speed = tk.StringVar(self)
+        self.pokemon_speed.set('')
+
+        self.pokemon_defense = tk.StringVar(self)
+        self.pokemon_defense.set('')
+
+        self.pokemon_special_defense = tk.StringVar(self)
+        self.pokemon_special_defense.set('')
+
+        self.pokemon_attack = tk.StringVar(self)
+        self.pokemon_attack.set('')
+
+        self.pokemon_special_attack = tk.StringVar(self)
+        self.pokemon_special_attack.set('')
+
+        self.pokemon_hp = tk.StringVar(self)
+        self.pokemon_hp.set('')
+
+        self.pokemon_height = tk.StringVar(self)
+        self.pokemon_height.set('')
+
+        self.pokemon_weight = tk.StringVar(self)
+        self.pokemon_weight.set('')
+
+        self.pokemon_type_list = tk.StringVar(self)
+        ##### END OF POKEMON STATS #####
+
+
+        ##### WIDGET SET UP #####
         self.id_lbl = tk.Label(self, text='ID')
         self.id_entry = tk.Entry(self, textvar=self.pokemon_id)
 
