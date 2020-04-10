@@ -160,12 +160,21 @@ class PokemonTab(tk.Frame):
         self.name_lbl.pack()
         self.name_entry.pack()
 
+        self.type_label = tk.Label(self, text='Type(s)')
+        self.type_label.pack()
+
+        self.type_listbox = tk.Listbox(
+            self, height=5, listvariable=self.pokemon_type_list
+        )
+        self.type_listbox.pack()
+
         self.rand_pokemon_btn = tk.Button(
             self,
             text='Random Pokemon',
             command=self.start_rando_pokemon_thread
         )
         self.rand_pokemon_btn.pack(side='bottom', fill=tk.X)
+        ##### END WIDGET SETUP #####
 
     def start_rando_pokemon_thread(self):
         t1 = threading.Thread(target=self.get_random_pokemon)
@@ -206,6 +215,10 @@ class PokemonTab(tk.Frame):
 
         self.pokemon_name.set(self.pokemon.name)
         logger.debug(self.pokemon_name)
+
+        self.pokemon_type_list.set(
+            [poke_type['type']['name'] for poke_type in self.pokemon.types]
+        )
 
 
 class Pokemon:
