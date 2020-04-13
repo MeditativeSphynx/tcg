@@ -18,7 +18,6 @@ from loguru import logger
 from tcg.tkroot import Root
 
 from tcg.pokemon import PokemonTab
-from tcg.mtg import MtgTab
 
 
 if __name__ == '__main__':
@@ -26,7 +25,6 @@ if __name__ == '__main__':
 
     root = Root()
 
-    mtg_frame = MtgTab(root.notebook)
     pokemon_frame = PokemonTab(root.notebook)
 
     root.mainloop()
