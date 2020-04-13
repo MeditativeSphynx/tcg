@@ -171,7 +171,16 @@ class PokemonTab(tk.Frame):
         self.type_listbox = tk.Listbox(
             self, height=5, listvariable=self.pokemon_type_list
         )
-        self.type_listbox.pack()
+        self.type_listbox.grid(column=0, row=5, pady=5, sticky=('S', 'W'))
+
+        self.search_pokemon_btn = tk.Button(
+            self,
+            text='Search Pokemon',
+            command=self.search_pokemon
+        )
+        self.search_pokemon_btn.grid(
+            column=0, row=6, pady=5, sticky=('N', 'S', 'E', 'W')
+            )
 
         self.rand_pokemon_btn = tk.Button(
             self,
@@ -182,6 +191,10 @@ class PokemonTab(tk.Frame):
             column=0, row=7, pady=5, sticky=('N', 'S', 'E', 'W')
         )
         ##### END WIDGET SETUP #####
+
+    def search_pokemon(self):
+        # TODO: ADD SEARCH LOGIC
+        print(f'({self.pokemon_id.get()}) {self.pokemon_name.get()}')
 
     def start_rando_pokemon_thread(self):
         t1 = threading.Thread(target=self.get_random_pokemon)
