@@ -154,14 +154,19 @@ class PokemonTab(tk.Frame):
         self.name_lbl = tk.Label(self, text='Name')
         self.name_entry = tk.Entry(self, textvar=self.pokemon_name)
 
-        self.id_lbl.pack()
-        self.id_entry.pack()
+        # widget_list = [['l1', 'w1'], 
+        #                ['l2', 'w2'], # pokemon name
+        #                ['l4', 'w4']
+        #                ['l3', 'w3']]
 
-        self.name_lbl.pack()
-        self.name_entry.pack()
+        self.id_lbl.grid(column=0, row=0, pady=5, sticky=('S', 'W'))
+        self.id_entry.grid(column=0, row=1, pady=5, sticky=('S', 'W'))
+
+        self.name_lbl.grid(column=0, row=2, pady=5, sticky=('S', 'W'))
+        self.name_entry.grid(column=0, row=3, pady=5, sticky=('S', 'W'))
 
         self.type_label = tk.Label(self, text='Type(s)')
-        self.type_label.pack()
+        self.type_label.grid(column=0, row=4, pady=5, sticky=('S', 'W'))
 
         self.type_listbox = tk.Listbox(
             self, height=5, listvariable=self.pokemon_type_list
@@ -173,7 +178,9 @@ class PokemonTab(tk.Frame):
             text='Random Pokemon',
             command=self.start_rando_pokemon_thread
         )
-        self.rand_pokemon_btn.pack(side='bottom', fill=tk.X)
+        self.rand_pokemon_btn.grid(
+            column=0, row=7, pady=5, sticky=('N', 'S', 'E', 'W')
+        )
         ##### END WIDGET SETUP #####
 
     def start_rando_pokemon_thread(self):
