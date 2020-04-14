@@ -153,43 +153,107 @@ class PokemonTab(tk.Frame):
         self.name_lbl = tk.Label(self, text='Name')
         self.name_entry = tk.Entry(self, textvar=self.pokemon_name)
 
-        # widget_list = [['l1', 'w1'], 
-        #                ['l2', 'w2'], # pokemon name
-        #                ['l4', 'w4']
-        #                ['l3', 'w3']]
+        self.hp_lbl = tk.Label(self, text='HP')
+        self.hp_entry = tk.Entry(self, textvar=self.pokemon_hp)
 
-        self.id_lbl.grid(column=0, row=0, pady=5, sticky=('S', 'W'))
-        self.id_entry.grid(column=0, row=1, pady=5, sticky=('S', 'W'))
+        self.speed_lbl = tk.Label(self, text='Speed')
+        self.speed_entry = tk.Entry(self, textvar=self.pokemon_speed)
 
-        self.name_lbl.grid(column=0, row=2, pady=5, sticky=('S', 'W'))
-        self.name_entry.grid(column=0, row=3, pady=5, sticky=('S', 'W'))
-
-        self.type_label = tk.Label(self, text='Type(s)')
-        self.type_label.grid(column=0, row=4, pady=5, sticky=('S', 'W'))
-
-        self.type_listbox = tk.Listbox(
-            self, height=5, listvariable=self.pokemon_type_list
+        self.defense_lbl = tk.Label(self, text='Defense')
+        self.defense_entry = tk.Entry(self, textvar=self.pokemon_defense)
+        
+        self.spc_defense_lbl = tk.Label(self, text='Special Defense')
+        self.spc_defense_entry = tk.Entry(
+            self, 
+            textvar=self.pokemon_special_defense
         )
-        self.type_listbox.grid(column=0, row=5, pady=5, sticky=('S', 'W'))
 
-        self.search_pokemon_btn = tk.Button(
-            self,
-            text='Search Pokemon',
-            command=self.search_pokemon
-        )
-        self.search_pokemon_btn.grid(
-            column=0, row=6, pady=5, sticky=('N', 'S', 'E', 'W')
-            )
+        self.type_lbl = tk.Label(self, text='Type(s)')
 
         self.rand_pokemon_btn = tk.Button(
             self,
             text='Random Pokemon',
             command=self.start_rando_pokemon_thread
         )
-        self.rand_pokemon_btn.grid(
-            column=0, row=7, pady=5, sticky=('N', 'S', 'E', 'W')
+
+        self.search_pokemon_btn = tk.Button(
+            self,
+            text='Search Pokemon',
+            command=self.search_pokemon
         )
-        ##### END WIDGET SETUP #####
+
+        widget_list = [
+            self.id_lbl, self.id_entry,
+            self.name_lbl, self.name_entry,
+            self.hp_lbl, self.hp_entry,
+            self.speed_lbl, self.speed_entry,
+            self.defense_lbl, self.defense_entry,
+            self.spc_defense_lbl, self.spc_defense_entry,
+            self.search_pokemon_btn,
+            self.rand_pokemon_btn
+        ]
+
+        ##### GRIDS ##### 
+        # HACK: Refactor this mess.
+        w_count = 1
+        column = {'count': 0, 'max': 0}
+        row = {'count': 0, 'max': 0}
+
+        for widget in widget_list:
+            logger.debug(f'widget: {widget.widgetName}')
+
+            if widget.widgetName == 'button':
+                column['count'] = 0
+                row['count'] = row['max'] + 1
+                widget.grid(
+                    column=column['count'], row=row['count'],
+                    columnspan=column['max'], padx=3, pady=3, 
+                    sticky=('N', 'S', 'E', 'W')
+                )
+            else:
+                widget.grid(
+                    column=column['count'], row=row['count'], padx=3, pady=3, 
+                    sticky=('N', 'S', 'E', 'W')
+                )
+
+            logger.debug(f'column: {column}')
+            logger.debug(f'row: {row}')
+
+            if w_count != 0 and w_count % 4 == 0:
+                column['count'] += 1
+                row['count'] = 0
+            else:
+                row['count'] += 1
+            w_count += 1
+
+            if column['count'] > column['max']:
+                column['max'] = column['count']
+
+            if row['count'] > row['max']:
+                row['max'] = row['count']
+
+        # master.update()
+        # print(master.winfo_width())
+
+        # self.type_lbl.grid(column=0, row=4, pady=3, sticky=('S', 'W'))
+        # self.type_listbox = tk.Listbox(
+        #     self, height=3, width=int(master.winfo_width()/6), 
+        #     listvariable=self.pokemon_type_list
+        # )
+        # self.type_listbox.grid(
+        #     column=0, row=5, pady=3, columnspan=2, sticky=('S', 'W')
+        # )
+
+        
+        # self.search_pokemon_btn.grid(
+        #     column=0, row=6, pady=3, columnspan=2, sticky=('N', 'S', 'E', 'W')
+        # )
+
+        
+        # self.rand_pokemon_btn.grid(
+        #     column=0, row=7, pady=3, columnspan=2, sticky=('N', 'S', 'E', 'W')
+        # )
+
 
     def search_pokemon(self):
         # TODO: ADD SEARCH LOGIC
