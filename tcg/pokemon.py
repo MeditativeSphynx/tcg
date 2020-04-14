@@ -146,7 +146,6 @@ class PokemonTab(tk.Frame):
         self.pokemon_type_list = tk.StringVar(self)
         ##### END OF POKEMON STATS #####
 
-
         ##### WIDGET SET UP #####
         self.id_lbl = tk.Label(self, text='ID')
         self.id_entry = tk.Entry(self, textvar=self.pokemon_id)
@@ -239,6 +238,32 @@ class PokemonTab(tk.Frame):
         self.pokemon_type_list.set(
             [poke_type['type']['name'] for poke_type in self.pokemon.types]
         )
+
+        for i in range(len(self.pokemon.stats)):  # HACK: Refactor
+            if self.pokemon.stats[i]['stat']['name'] == 'speed':
+                self.pokemon_speed.set(self.pokemon.stats[i]['base_stat'])
+            elif self.pokemon.stats[i]['stat']['name'] == 'defense':
+                self.pokemon_defense.set(self.pokemon.stats[i]['base_stat'])
+            elif self.pokemon.stats[i]['stat']['name'] == 'special-defense':
+                self.pokemon_special_defense.set(
+                    self.pokemon.stats[i]['base_stat']
+                )
+            elif self.pokemon.stats[i]['stat']['name'] == 'attack':
+                self.pokemon_attack.set(self.pokemon.stats[i]['base_stat'])
+            elif self.pokemon.stats[i]['stat']['name'] == 'special-attack':
+                self.pokemon_special_attack.set(
+                    self.pokemon.stats[i]['base_stat']
+                )
+            elif self.pokemon.stats[i]['stat']['name'] == 'hp':
+                self.pokemon_hp.set(self.pokemon.stats[i]['base_stat'])
+            elif self.pokemon.stats[i]['stat']['name'] == 'height':
+                self.pokemon_height.set(self.pokemon.stats[i]['base_stat'])
+            elif self.pokemon.stats[i]['stat']['name'] == 'weight':
+                self.pokemon_weight.set(self.pokemon.stats[i]['base_stat'])
+            else:
+                logger.debug(
+                    f"forgotten stat: {self.pokemon.stats[i]['stat']['name']}"
+                )
 
 
 class Pokemon:
