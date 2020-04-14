@@ -7,7 +7,7 @@ from loguru import logger
 from datetime import datetime
 
 from tcg import tcg_path
-from core_data import ExecutionData
+# from core_data import ExecutionData
 # execution_data = ExecutionData()
 
 
