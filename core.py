@@ -1,3 +1,4 @@
+# TODO: UPDATE THE INFORMATION BELOW.
 """
 A Trading Card Game or Collector Card Game API interaction application.
 Basically, if there it an API for a particular TCG or CCG (or a variation of
@@ -13,20 +14,26 @@ It's for fun. Let's have fun interacting with different APIs, Python GUI
 programming, and data!
 """
 
-from loguru import logger
 
+from tcg import logger
 from tcg.tkroot import Root
-
 from tcg.pokemon import PokemonTab
+from tcg.pokenetwork.network_tab import NetworkTab
+
+from twisted.internet import endpoints, reactor, tksupport
 
 
 if __name__ == '__main__':
-    logger.info('>>> STARTING <<<')
+    logger.info('starting application')
 
-    root = Root()
+    root = Root(reactor)
 
-    pokemon_frame = PokemonTab(root.notebook)
+    pokemon_tab = PokemonTab(root)
+    pokenet_tab = NetworkTab(root)
 
-    root.mainloop()
+    # root.mainloop()
+    tksupport.install(root)
+    root.protocol('WM_DELETE_WINDOW', root.shutdown_callback)
+    reactor.run()
 
-    logger.info('>>> STOPPING <<<')
+    logger.info('stopping application')

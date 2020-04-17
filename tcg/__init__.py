@@ -1,9 +1,12 @@
 import os
 from loguru import logger
 
+# TODO: RENAME—REMOVE 'tcg'
 tcg_path = os.path.abspath(os.path.dirname(__file__))
 logger.debug(tcg_path)
 
+# TODO: RENAME—REMOVE 'tcg'
+# TODO: 
 tcg_pokemon_cache = f'{tcg_path}/data/pokecache.json'
 tcg_last_pokemon_accessed = f'{tcg_path}/data/last_pokemon.json'
 tcg_last_mtg_accessed = f'{tcg_path}/data/last_mtg.json'
