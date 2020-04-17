@@ -1,3 +1,4 @@
+# TODO: UPDATE THE INFORMATION BELOW.
 """
 A Trading Card Game or Collector Card Game API interaction application.
 Basically, if there it an API for a particular TCG or CCG (or a variation of
@@ -16,8 +17,8 @@ programming, and data!
 from loguru import logger
 
 from tcg.tkroot import Root
-
 from tcg.pokemon import PokemonTab
+from tcg.pokenetwork.network import NetworkTab
 
 
 if __name__ == '__main__':
@@ -25,7 +26,9 @@ if __name__ == '__main__':
 
     root = Root()
 
-    pokemon_frame = PokemonTab(root.notebook)
+    # NOTE: IS THERE A BETTER WAY TO INSTANTIATE THIS?
+    pokemon_tab = PokemonTab(root.notebook)
+    pokenet_tab = NetworkTab(root.notebook)
 
     root.mainloop()
 

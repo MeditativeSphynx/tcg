@@ -1,5 +1,4 @@
 import tkinter as tk
-from tkinter import ttk
 
 from pprint import pprint
 import threading
@@ -106,7 +105,7 @@ class PokeCache:
 class PokemonTab(tk.Frame):
     def __init__(self, master=None):
         super().__init__(master)
-        logger.debug('>>> Setting up Pokemon Frame <<<')
+        logger.debug('setting up pokemon frame')
 
         self.pokemon = None
 
@@ -294,11 +293,7 @@ class PokemonTab(tk.Frame):
         logger.debug('Updating Pokemon information')
 
         self.pokemon_id.set(self.pokemon.id)
-        logger.debug(self.pokemon_id)
-
         self.pokemon_name.set(self.pokemon.name)
-        logger.debug(self.pokemon_name)
-
         self.pokemon_type_list.set(
             [poke_type['type']['name'] for poke_type in self.pokemon.types]
         )
@@ -306,24 +301,32 @@ class PokemonTab(tk.Frame):
         for i in range(len(self.pokemon.stats)):  # HACK: Refactor
             if self.pokemon.stats[i]['stat']['name'] == 'speed':
                 self.pokemon_speed.set(self.pokemon.stats[i]['base_stat'])
+
             elif self.pokemon.stats[i]['stat']['name'] == 'defense':
                 self.pokemon_defense.set(self.pokemon.stats[i]['base_stat'])
+
             elif self.pokemon.stats[i]['stat']['name'] == 'special-defense':
                 self.pokemon_special_defense.set(
                     self.pokemon.stats[i]['base_stat']
                 )
+
             elif self.pokemon.stats[i]['stat']['name'] == 'attack':
                 self.pokemon_attack.set(self.pokemon.stats[i]['base_stat'])
+
             elif self.pokemon.stats[i]['stat']['name'] == 'special-attack':
                 self.pokemon_special_attack.set(
                     self.pokemon.stats[i]['base_stat']
                 )
+
             elif self.pokemon.stats[i]['stat']['name'] == 'hp':
                 self.pokemon_hp.set(self.pokemon.stats[i]['base_stat'])
+
             elif self.pokemon.stats[i]['stat']['name'] == 'height':
                 self.pokemon_height.set(self.pokemon.stats[i]['base_stat'])
+
             elif self.pokemon.stats[i]['stat']['name'] == 'weight':
                 self.pokemon_weight.set(self.pokemon.stats[i]['base_stat'])
+                
             else:
                 logger.debug(
                     f"forgotten stat: {self.pokemon.stats[i]['stat']['name']}"
