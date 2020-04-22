@@ -9,11 +9,13 @@ import json
 
 import tinydb
 import pokebase
-from loguru import logger
 
-from tcg import tcg_pokemon_cache, tcg_path, tcg_last_pokemon_accessed
-
-logger.add('./logs/debug.log', level='DEBUG')
+from tcg import (
+    tcg_pokemon_cache, 
+    logger,
+    tcg_path, 
+    tcg_last_pokemon_accessed
+)
 
 
 class PokeCache:
@@ -104,12 +106,12 @@ class PokeCache:
 
 class PokemonTab(tk.Frame):
     def __init__(self, master=None):
-        super().__init__(master)
+        super().__init__()
         logger.debug('setting up pokemon frame')
 
         self.pokemon = None
 
-        master.add(self, text='Pokemon')
+        master.notebook.add(self, text='Pokemon')
 
         ##### POKEMON STATS #####
         self.pokemon_id = tk.StringVar(self)
@@ -274,10 +276,6 @@ class PokemonTab(tk.Frame):
         self.call_api(p_id=random_pokemon_no)
         self.update_pokemon_frame()
 
-    # HACK: HOW CAN I MAKE ``call_api`` NOT DEPENDENT ON THE ``@PokeCache``
-    #   DECORATOR?
-
-    # HACK: SHOULD I MAKE ``PokeCache`` A CLASS METHOD OF ``Pokemon`` INSTEAD?
     @PokeCache
     def call_api(self, p_id=None, name=None, pokemon=None):
         """Used to be decorated.
