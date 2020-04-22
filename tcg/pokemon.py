@@ -217,9 +217,6 @@ class PokemonTab(tk.Frame):
                     sticky=('N', 'S', 'E', 'W')
                 )
 
-            logger.debug(f'column: {column}')
-            logger.debug(f'row: {row}')
-
             if w_count != 0 and w_count % 4 == 0:
                 column['count'] += 1
                 row['count'] = 0
