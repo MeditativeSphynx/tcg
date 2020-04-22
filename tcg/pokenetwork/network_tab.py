@@ -82,5 +82,6 @@ class NetworkTab(tk.Frame):
 
     def start_server(self):
         logger.info('starting server')
+        self.server_start_btn['state'] = 'disable'
         listener = endpoints.TCP4ServerEndpoint(self.root.reactor, port=8000)
         listener.listen(pokeserver.PokeServerFactory())
