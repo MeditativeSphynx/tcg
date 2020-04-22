@@ -8,7 +8,7 @@ tcg_last_pokemon_accessed = f'{tcg_path}/data/last_pokemon.json'
 tcg_last_mtg_accessed = f'{tcg_path}/data/last_mtg.json'
 
 if not os.path.exists(f'{tcg_path}/data'):
-    os.mkddir(f'{tcg_path}')
+    os.mkdir(f'{tcg_path}')
 
 log_path = f'{tcg_path}/logs/debug.log'
 if not os.path.exists(log_path):
