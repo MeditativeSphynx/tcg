@@ -23,6 +23,9 @@ class PokeClient(protocol.Protocol):
 
         self.transport.write(data.encode('utf8'))
 
+    def close_connection(self):
+        self.transport.loseConnection()
+
 
 class PokeClientFactory(protocol.ClientFactory):
     def __init__(self, host, port):
