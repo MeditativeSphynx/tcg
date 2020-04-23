@@ -14,6 +14,7 @@ class NetworkTab(tk.Frame):
         self.root = master
         self.master = self.root.notebook
 
+
         self.bootstrap_nodes = (
             {'host': 'localhost', 'port': 8000},
         )
@@ -58,8 +59,6 @@ class NetworkTab(tk.Frame):
             columnspan=2
         )
 
-    # TODO: SETUP THE NODE CONNECTION LOGIC
-    # TODO: SETUP THE NODE CODE
     def start_node(self):
         for node_addr in self.bootstrap_nodes:
             host, port = node_addr.values()
@@ -79,9 +78,10 @@ class NetworkTab(tk.Frame):
                 )
             )
             logger.debug(f'connecting to {host}:{port}')
+        self.client_start_btn['state'] = 'disable'
 
     def start_server(self):
         logger.info('starting server')
-        self.server_start_btn['state'] = 'disable'
         listener = endpoints.TCP4ServerEndpoint(self.root.reactor, port=8000)
         listener.listen(pokeserver.PokeServerFactory())
+        self.server_start_btn['state'] = 'disable'
