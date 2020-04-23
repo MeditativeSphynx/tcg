@@ -43,4 +43,4 @@ class PokeClientFactory(protocol.ClientFactory):
         print('connection lost', reason)
 
     def buildProtocol(self, addr):
-        return super().buildProtocol(addr)
+        return PokeClient(self)
