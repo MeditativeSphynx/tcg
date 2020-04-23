@@ -201,8 +201,6 @@ class PokemonTab(tk.Frame):
         row = {'count': 0, 'max': 0}
 
         for widget in widget_list:
-            logger.debug(f'widget: {widget.widgetName}')
-
             if widget.widgetName == 'button':
                 column['count'] = 0
                 row['count'] = row['max'] + 1
